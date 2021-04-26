@@ -1,0 +1,27 @@
+{
+    "train_input_feed":"ultra.input_layer.ClickSimulationFeed",
+    "train_input_hparams":"click_model_json=./example/ClickModel/ubm_0.1_1_4_1.0.json",
+    "valid_input_feed":"ultra.input_layer.ClickSimulationFeed",
+    "valid_input_hparams":"forward_only=true,click_model_json=./example/ClickModel/ubm_0.1_1_4_1.0.json",
+    "test_input_feed":"ultra.input_layer.ClickSimulationFeed",
+    "test_input_hparams":"forward_only=true,click_model_json=./example/ClickModel/ubm_0.1_1_4_1.0.json",
+
+    "ranking_model":"ultra.ranking_model.DNN",
+    "ranking_model_hparams":"hidden_layer_sizes=[512, 256, 128]",
+
+    "learning_algorithm": "ultra.learning_algorithm.DLA",
+    "learning_algorithm_hparams":"learning_rate=0.0003,propensity_learning_rate=0.003,max_propensity_weight=100,propensity_loss_func=click_weighted_log_loss,reweight_pointwise_loss=false",
+
+
+    "propensity_model": "ultra.propensity_model.LSTM",
+    "propensity_model_hparams": "",
+
+    "cas": "./example/ClickModel/cascade_0.1_1.0_4_1.0.json",
+    "ubm": "./example/ClickModel/ubm_0.1_1_4_1.0.json",
+
+    "metrics": [
+        "mrr", "ndcg"
+    ],
+    "metrics_topn" : [1,3,5,10],
+    "objective_metric": "ndcg_10"
+}
